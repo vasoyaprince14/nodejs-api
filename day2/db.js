@@ -1,5 +1,6 @@
 const mongoose=require('mongoose');
-const url="mongodb+srv://princevasoya:9518139625@cluster0.vhwvlhd.mongodb.net/day2db?retryWrites=true&w=majority&appName=Cluster0"
+require("dotenv").config();
+const url=process.env.MONGO_URL;
 
 mongoose.connect(url).then(()=>{
     console.log("db connected")

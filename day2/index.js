@@ -1,5 +1,5 @@
 const db=require("./db");
-
+require('dotenv').config
 const express= require("express");
 
 const app= express();
@@ -16,6 +16,6 @@ app.get("/",(req,res)=>{
 
 app.use("/person" ,personRouter);
 app.use("/menu",menuRouter);
-app.listen(3000,()=>{
+app.listen(process.env.PORT,()=>{
     console.log("listend on port 3000");
 })

@@ -4,7 +4,7 @@ const Contact=require("../models/contactModel")
 
 
 const getContacts=async(req,res)=>{
-    const contacts=await Contact.find();
+    const contacts=await Contact.find({user_id:req.user.id});
     res.status(200).json(contacts);
 }
 
@@ -15,7 +15,7 @@ const createContact=asyncHandler(async(req,res)=>{
         throw new Error("ALl field required")
     }
 
-    const contact=new Contact(req.body)
+    const contact=new Contact({name,email,phone,user_id:req.user.id})
      const data=await  contact.save();
     res.status(201).json({message:"contact created ", data:contact , returnvalue:data});
 })
